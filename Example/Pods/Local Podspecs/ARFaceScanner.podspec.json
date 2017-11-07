@@ -1,0 +1,22 @@
+{
+  "name": "ARFaceScanner",
+  "version": "0.1.0",
+  "summary": "A short description of ARFaceScanner.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/Simon/ARFaceScanner",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Simon": "zhangy405@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/Simon/ARFaceScanner.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "ARFaceScanner/Classes/**/*"
+}

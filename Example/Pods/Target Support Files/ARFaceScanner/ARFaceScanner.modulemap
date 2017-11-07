@@ -1,0 +1,6 @@
+framework module ARFaceScanner {
+  umbrella header "ARFaceScanner-umbrella.h"
+
+  export *
+  module * { export * }
+}
