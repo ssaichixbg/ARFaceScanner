@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'ARFaceScanner_Example' do
+  pod 'ARFaceScanner', :path => '../'
+
+  target 'ARFaceScanner_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
