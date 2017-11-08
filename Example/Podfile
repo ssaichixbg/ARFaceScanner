@@ -2,7 +2,8 @@ use_frameworks!
 
 target 'ARFaceScanner_Example' do
   pod 'ARFaceScanner', :path => '../'
-
+  pod 'Alamofire', '~> 4.5'
+  
   target 'ARFaceScanner_Tests' do
     inherit! :search_paths
 
