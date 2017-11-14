@@ -7,6 +7,7 @@
 
 import UIKit
 import ARKit
+import GLKit
 import Vision
 
 @objc public protocol AR2DFaceManagerDelegate {
@@ -22,6 +23,9 @@ public class AR2DFaceManager: NSObject {
     
     public var faceAnchors: [AR2DFaceAnchor] { return _faceAnchors }
     public var delegate: AR2DFaceManagerDelegate?
+    public var started: Bool { return session != nil }
+    public var orientation: UIInterfaceOrientation = .portrait
+    public var viewportSize: CGSize = CGSize.zero
     
     public override init() {
         super.init()
@@ -29,8 +33,9 @@ public class AR2DFaceManager: NSObject {
         setupRequest()
     }
     
-    public func start(_ session: ARSession) {
+    public func start(_ session: ARSession, viewportSize: CGSize) {
         self.session = session
+        self.viewportSize = viewportSize
     }
     
     public func pause() {
@@ -43,26 +48,61 @@ public class AR2DFaceManager: NSObject {
     }
     
     fileprivate func setupRequest() {
-        let faceRequest = VNDetectFaceRectanglesRequest(completionHandler: faceDetectHandler)
+        let faceRequest = VNDetectFaceLandmarksRequest(completionHandler: faceDetectHandler)
         visionRequests = [faceRequest]
     }
     
     fileprivate func updateBinding() {
+        
         guard let frame = session.currentFrame else { return }
         
-        _faceAnchors = []
-        
         faceObservations.forEach { (obs) in
-            let arHitTestResults = frame.hitTest(obs.boundingBox.centerPoint, types: [.featurePoint])
-            guard let closestResult = arHitTestResults.first else { return }
+            var arHitTestResults = frame.rawFeaturPoints(in: obs.boundingBox, orientation: orientation, viewportSize: viewportSize)
+            guard arHitTestResults.count >= 3 else { return }
+            let point1 = arHitTestResults.first!
+            let point2 = arHitTestResults.last!
+            let point3 = arHitTestResults[arHitTestResults.count / 2]
+            let viewTransform = frame.viewTransform(for: orientation, viewportSize: viewportSize)
+            let boxCenter2DPoint = obs.boundingBox.centerPoint.applying(viewTransform)
+            let convert = VectorConverter(point1: point1, point2: point2, point3: point3)
             
-            let transform : matrix_float4x4 = closestResult.worldTransform
+            let faceCenter = convert(boxCenter2DPoint.glVector)
+            let vertex = [obs.boundingBox.topLeft, obs.boundingBox.topRight, obs.boundingBox.bottomRight].map({
+                return convert($0.applying(viewTransform).glVector)
+            })
             
-            let anchor = AR2DFaceAnchor()
-            anchor.ARPosition = vector3(transform.columns.3.x, transform.columns.3.y, transform.columns.3.z)
+            // find anchor
+            let existingAnchor: AR2DFaceAnchor? = _faceAnchors.filter({ (anchor) in
+                let position = anchor.facePosition
+                let positionVector = GLKVector3Make( position.x, position.y, position.z)
+                return (positionVector - faceCenter).length < 0.1
+            }).first
+            var anchor: AR2DFaceAnchor
+            if let existingAnchor = existingAnchor {
+                anchor = existingAnchor
+            }
+            else {
+                // create a face anchor
+                anchor = AR2DFaceAnchor()
+                _faceAnchors.append(anchor)
+            }
+            
+            anchor.samples.append((
+                pos: faceCenter.sim_vector,
+                rot: GLKQuaternion.lookRotation(forward: (vertex[0] - vertex[1]) * (vertex[1] - vertex[2]), up: (vertex[1] - vertex[2])).sim_quaternion,
+                sca: GLKVector3Make((vertex[0] - vertex[1]).length, (vertex[1] - vertex[2]).length, 0.2).sim_vector
+            ))
+
+            anchor.face2DBoundingBox = obs.boundingBox.applying(viewTransform)
             anchor.faceObservation = obs
+            anchor.pointClouds = arHitTestResults.map({ $0.worldPosition.sim_vector })
+            anchor.point2DClouds = arHitTestResults.map({ $0.projection })
+            if anchor.samples.count >= 20 {
+                anchor.samples.removeFirst()
+            }
+            anchor.lastUpdate = frame.timestamp
             
-            _faceAnchors.append(anchor)
+            _faceAnchors = _faceAnchors.filter({ frame.timestamp - $0.lastUpdate < 0.3 })
         }
         
         DispatchQueue.main.async {
@@ -100,10 +140,6 @@ public class AR2DFaceManager: NSObject {
             } catch {
                 print(error)
             }
-            //            DispatchQueue.main.async {
-            //
-            //                self.faceHUDView.backgroundImage = cgImage
-            //            }
         }
         
         visionQueue.async {
