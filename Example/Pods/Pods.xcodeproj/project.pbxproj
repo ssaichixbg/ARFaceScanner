@@ -11,24 +11,26 @@
 		08143C8CE68AFC1A453994119459837D /* Pods-ARFaceScanner_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = EB16715678AD17E3FF397D0C63B0B3A9 /* Pods-ARFaceScanner_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		10EB23E9ECC4B33E16933BB1EA560B6A /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87882A1F5A92C8138D54545E51D51E6F /* Timeline.swift */; };
 		1B9EDEDC964E6B08F78920B4F4B9DB84 /* Alamofire-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B44A27EFBB0DA84D738057B77F3413B1 /* Alamofire-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1EEFA8FBC86028EE1E3410F3E1F8C3CF /* AR2DFaceAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D5B094E56C72CB9FEE54F6C5313F32 /* AR2DFaceAnchor.swift */; };
+		2CB0ABC1E14257B8F30D6A0CBADD9457 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCBBEC895623DC280121CE3EF8656E4 /* Utilities.swift */; };
 		3626B94094672CB1C9DEA32B9F9502E1 /* TaskDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01C037B4034EDA3D7955BC5E4E9D9D6 /* TaskDelegate.swift */; };
 		4041DF6C39A28DE383E3EFB3C0CEC6E1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0346916C8B8BB948A6B8997AAEF5824E /* UIKit.framework */; };
 		4B7E4460213565313B290E054DD7685B /* Pods-ARFaceScanner_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D24352DA6AFBE6D34086A41FE55E618E /* Pods-ARFaceScanner_Tests-dummy.m */; };
 		5387216E723A3C68E851CA15573CDD71 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E230A0448B394DE26E688DAC8E6201E /* Request.swift */; };
 		61200D01A1855D7920CEF835C8BE00B0 /* DispatchQueue+Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FCBF1EED873F61C6D46CE37FA5C39D3 /* DispatchQueue+Alamofire.swift */; };
 		62F65AD8DC4F0F9610F4B8B4738EC094 /* ServerTrustPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B030D27CAC730C5EB0F22390645310 /* ServerTrustPolicy.swift */; };
-		68FDD5882287076F84F420AE8D2A1A06 /* AR2DFaceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0C56D371B9582B9DF6B6932763DD87 /* AR2DFaceManager.swift */; };
 		73B9C996AED49ED7CF8EC2A6F1738059 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9E9D644FEA12191E043E7120267BFAD /* Foundation.framework */; };
+		798552AAD34317C2BA190B2EF777C62D /* AR2DFaceAnchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B3F727C1A080B17D22286BBE1578D9 /* AR2DFaceAnchor.swift */; };
 		7B5FE28C7EA4122B0598738E54DBEBD8 /* SessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195D73DD9EF275A3C56569E2B1CA8026 /* SessionDelegate.swift */; };
 		7D8CC01E8C9EFFF9F4D65406CDE0AB66 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D60BC9955B4F7FFA62D7440CB385C11 /* Result.swift */; };
+		881E1BF3E25F911B4535969A4AFF8C4B /* AR2DFaceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139799F8961CE0437A9DCD13A84AE29E /* AR2DFaceManager.swift */; };
 		9756B5382F157BD76BBF3FDC454AD0FD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9E9D644FEA12191E043E7120267BFAD /* Foundation.framework */; };
 		9ED2BB2981896E0A39EFA365503F58CE /* AFError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF006B0AD5765D1BFA8253C2DCBB126 /* AFError.swift */; };
 		9F4563702943A33AB91AEA5C4300BDF8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9E9D644FEA12191E043E7120267BFAD /* Foundation.framework */; };
 		A2A6F71B727312BD45CC7A4AAD7B0AB7 /* NetworkReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A8AA5F9EDED0A0BDDE7E830BF4AEE0 /* NetworkReachabilityManager.swift */; };
-		A50012DE53D96F707C8B778B8BE4AA12 /* ARFaceScanner-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A507B9C17F03346C90FD785E23653761 /* ARFaceScanner-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A50012DE53D96F707C8B778B8BE4AA12 /* ARFaceScanner-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = CD8ACBC662895688935FC842965DE9F5 /* ARFaceScanner-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A9EEEA7477981DEEBC72432DE9990A4B /* Alamofire-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 22C1C119BCE81C53F76CAC2BE27C38E0 /* Alamofire-dummy.m */; };
 		AE1EF48399533730D0066E04B22CA2D6 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CDAC6C1187C5467E576980E1062C8B /* SessionManager.swift */; };
+		B160BC5409F2A4B12F1DCA0146944A51 /* GLKit+Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729B081D694C77431F0B8B0E6A5B016B /* GLKit+Operation.swift */; };
 		B46B5292BD7DC3CC89D32F8FB0E00A84 /* ARKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C710033B236CDCDDAC8F9504C7B815DA /* ARKit.framework */; };
 		B65FCF589DA398C3EFE0128064E510EC /* MultipartFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155538D91ACEEEDF82069ACF6C1A02E7 /* MultipartFormData.swift */; };
 		B7320F8BC557578A6738B7ABCF1A7E29 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9E9D644FEA12191E043E7120267BFAD /* Foundation.framework */; };
@@ -36,12 +38,11 @@
 		BBEFE2F9CEB73DC7BD97FFA66A0D9D4F /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B029DBC43E49A740F12B5E4D2E6DD452 /* Validation.swift */; };
 		BE5C67A07E289FE1F9BE27335B159997 /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6639346628280A0D0FAD35196BF56108 /* ParameterEncoding.swift */; };
 		CB6D60925223897FFA2662667DF83E8A /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F47F5C9CDB035C5AFADEBA5BF44F1C /* Response.swift */; };
-		CFB388144B4890735097463865FAA32E /* ARFaceScanner-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 11ED16388887504C7273FBF0244FC1F8 /* ARFaceScanner-dummy.m */; };
 		D3CA3401E88B84A1AAF9CF82852A849F /* Pods-ARFaceScanner_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5265D0C9F21278BC35EF9EC6F7F3A8 /* Pods-ARFaceScanner_Example-dummy.m */; };
 		EFD264FC408EBF3BA2528E70B08DDD94 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66A46F517F0AF7E85A16D723F6406896 /* Notifications.swift */; };
 		F6BECD98B97CBFEBE2C96F0E9E72A6C0 /* ResponseSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F9510473F6FFD7AA66524DB16C2263 /* ResponseSerialization.swift */; };
+		F6DF8E9A03A7681739863F2BD5B70DDD /* ARFaceScanner-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A5CCC385E47ED426E5F2437BAB76FC /* ARFaceScanner-dummy.m */; };
 		F8B3D3092ED0417E8CDF32033F6122F5 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFCB8C44DE758E906C0BCDA455937B85 /* Alamofire.swift */; };
-		FF5F5BDEADABB4EFCB5A0FE5D6F7DDC9 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C6506AA23D86BF76688CF7886DF592 /* Utilities.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,44 +65,43 @@
 /* Begin PBXFileReference section */
 		0346916C8B8BB948A6B8997AAEF5824E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		04F47F5C9CDB035C5AFADEBA5BF44F1C /* Response.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Response.swift; path = Source/Response.swift; sourceTree = "<group>"; };
-		0995A343047ACCA5F90B7A024393F319 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0FCBF1EED873F61C6D46CE37FA5C39D3 /* DispatchQueue+Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DispatchQueue+Alamofire.swift"; path = "Source/DispatchQueue+Alamofire.swift"; sourceTree = "<group>"; };
-		11ED16388887504C7273FBF0244FC1F8 /* ARFaceScanner-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ARFaceScanner-dummy.m"; sourceTree = "<group>"; };
+		139799F8961CE0437A9DCD13A84AE29E /* AR2DFaceManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AR2DFaceManager.swift; path = ARFaceScanner/Classes/AR2DFaceManager.swift; sourceTree = "<group>"; };
 		13A0A663B36A229C69D5274A83E93F88 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		155538D91ACEEEDF82069ACF6C1A02E7 /* MultipartFormData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MultipartFormData.swift; path = Source/MultipartFormData.swift; sourceTree = "<group>"; };
 		195D73DD9EF275A3C56569E2B1CA8026 /* SessionDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SessionDelegate.swift; path = Source/SessionDelegate.swift; sourceTree = "<group>"; };
-		1DCC4277A07F5C8F8F7E289691EEEC41 /* ARFaceScanner-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ARFaceScanner-prefix.pch"; sourceTree = "<group>"; };
 		1E230A0448B394DE26E688DAC8E6201E /* Request.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Source/Request.swift; sourceTree = "<group>"; };
 		1E5265D0C9F21278BC35EF9EC6F7F3A8 /* Pods-ARFaceScanner_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ARFaceScanner_Example-dummy.m"; sourceTree = "<group>"; };
+		21D6E1FDDAA099C671E28FE0B31281A6 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		22C1C119BCE81C53F76CAC2BE27C38E0 /* Alamofire-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Alamofire-dummy.m"; sourceTree = "<group>"; };
-		260BE7121149089709D9C0BF9F881835 /* Pods-ARFaceScanner_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-ARFaceScanner_Tests.modulemap"; sourceTree = "<group>"; };
+		260BE7121149089709D9C0BF9F881835 /* Pods-ARFaceScanner_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-ARFaceScanner_Tests.modulemap"; sourceTree = "<group>"; };
 		29DAE6D440EC55B4074EC6AAF0952211 /* Pods-ARFaceScanner_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ARFaceScanner_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		2BC93411931398F6CA4C9C24EA2E66E2 /* Pods-ARFaceScanner_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ARFaceScanner_Tests-frameworks.sh"; sourceTree = "<group>"; };
-		325B032E35CE110237D47D21E5DAC001 /* ARFaceScanner.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = ARFaceScanner.modulemap; sourceTree = "<group>"; };
 		32B030D27CAC730C5EB0F22390645310 /* ServerTrustPolicy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ServerTrustPolicy.swift; path = Source/ServerTrustPolicy.swift; sourceTree = "<group>"; };
+		3BDED6CCFC0E41E91B861055B9719A1D /* ARFaceScanner.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = ARFaceScanner.modulemap; sourceTree = "<group>"; };
 		3D60BC9955B4F7FFA62D7440CB385C11 /* Result.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Result.swift; path = Source/Result.swift; sourceTree = "<group>"; };
 		406FB466213D0AA642098906AF536131 /* Pods-ARFaceScanner_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ARFaceScanner_Tests-resources.sh"; sourceTree = "<group>"; };
 		46CDAC6C1187C5467E576980E1062C8B /* SessionManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SessionManager.swift; path = Source/SessionManager.swift; sourceTree = "<group>"; };
 		4863DE0AF66A437171D3DC9ABE466A8C /* Pods-ARFaceScanner_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ARFaceScanner_Example-acknowledgements.plist"; sourceTree = "<group>"; };
-		48C6506AA23D86BF76688CF7886DF592 /* Utilities.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Utilities.swift; path = ARFaceScanner/Classes/Utilities.swift; sourceTree = "<group>"; };
 		4A9A198F2320C23317DDE62D1FF5645F /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4AF006B0AD5765D1BFA8253C2DCBB126 /* AFError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AFError.swift; path = Source/AFError.swift; sourceTree = "<group>"; };
-		58F4CDF58E74C6A6034B83E0842FDCEA /* Pods_ARFaceScanner_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ARFaceScanner_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		58F4CDF58E74C6A6034B83E0842FDCEA /* Pods_ARFaceScanner_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_ARFaceScanner_Tests.framework; path = "Pods-ARFaceScanner_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D1B225E14A5C7D26D05D08D350CDF98 /* Pods-ARFaceScanner_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ARFaceScanner_Example-frameworks.sh"; sourceTree = "<group>"; };
 		638192BD27220592839D959FA5750060 /* Pods-ARFaceScanner_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ARFaceScanner_Example-umbrella.h"; sourceTree = "<group>"; };
 		6639346628280A0D0FAD35196BF56108 /* ParameterEncoding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ParameterEncoding.swift; path = Source/ParameterEncoding.swift; sourceTree = "<group>"; };
 		66A46F517F0AF7E85A16D723F6406896 /* Notifications.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Notifications.swift; path = Source/Notifications.swift; sourceTree = "<group>"; };
-		699858B4DBFD12D8CA39F78F1D578158 /* Pods-ARFaceScanner_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-ARFaceScanner_Example.modulemap"; sourceTree = "<group>"; };
+		699858B4DBFD12D8CA39F78F1D578158 /* Pods-ARFaceScanner_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-ARFaceScanner_Example.modulemap"; sourceTree = "<group>"; };
 		6D13EB96903063980C8125305511C01A /* Vision.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Vision.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Vision.framework; sourceTree = DEVELOPER_DIR; };
+		729B081D694C77431F0B8B0E6A5B016B /* GLKit+Operation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "GLKit+Operation.swift"; path = "ARFaceScanner/Classes/GLKit+Operation.swift"; sourceTree = "<group>"; };
 		775F8C5DF3C5C09553A6083B89C22AA6 /* Pods-ARFaceScanner_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ARFaceScanner_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		7D141D1953E5C6E67E362CE73090E48A /* Alamofire.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Alamofire.modulemap; sourceTree = "<group>"; };
+		7D141D1953E5C6E67E362CE73090E48A /* Alamofire.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = Alamofire.modulemap; sourceTree = "<group>"; };
 		818282381FB060518B829FAB6CD30DA2 /* Pods-ARFaceScanner_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ARFaceScanner_Example-resources.sh"; sourceTree = "<group>"; };
-		84A5158421C0AD1CAB4D65F7D18D7378 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		84A5158421C0AD1CAB4D65F7D18D7378 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Alamofire.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		84F76BFF6C09E9A093448C5CFAF3C039 /* ARFaceScanner-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ARFaceScanner-prefix.pch"; sourceTree = "<group>"; };
 		87882A1F5A92C8138D54545E51D51E6F /* Timeline.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Timeline.swift; path = Source/Timeline.swift; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		9F00EDEBB543CA8A674A55755B111EA5 /* ARFaceScanner.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ARFaceScanner.xcconfig; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A01C037B4034EDA3D7955BC5E4E9D9D6 /* TaskDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TaskDelegate.swift; path = Source/TaskDelegate.swift; sourceTree = "<group>"; };
-		A507B9C17F03346C90FD785E23653761 /* ARFaceScanner-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ARFaceScanner-umbrella.h"; sourceTree = "<group>"; };
+		A0A5CCC385E47ED426E5F2437BAB76FC /* ARFaceScanner-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "ARFaceScanner-dummy.m"; sourceTree = "<group>"; };
 		B029DBC43E49A740F12B5E4D2E6DD452 /* Validation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Validation.swift; path = Source/Validation.swift; sourceTree = "<group>"; };
 		B44A27EFBB0DA84D738057B77F3413B1 /* Alamofire-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-umbrella.h"; sourceTree = "<group>"; };
 		B52198202EBA88910CA88F9424F0DFA8 /* Pods-ARFaceScanner_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ARFaceScanner_Example.debug.xcconfig"; sourceTree = "<group>"; };
@@ -109,20 +109,22 @@
 		BCCA9CA7D9C1A2047BB93336C5708DFD /* Alamofire-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-prefix.pch"; sourceTree = "<group>"; };
 		C0CA6DD6E4607A3A1DFF41F33B25B6F6 /* Pods-ARFaceScanner_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ARFaceScanner_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		C710033B236CDCDDAC8F9504C7B815DA /* ARKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ARKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/ARKit.framework; sourceTree = DEVELOPER_DIR; };
-		C7D5B094E56C72CB9FEE54F6C5313F32 /* AR2DFaceAnchor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AR2DFaceAnchor.swift; sourceTree = "<group>"; };
+		CD8ACBC662895688935FC842965DE9F5 /* ARFaceScanner-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "ARFaceScanner-umbrella.h"; sourceTree = "<group>"; };
+		CDCBBEC895623DC280121CE3EF8656E4 /* Utilities.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Utilities.swift; path = ARFaceScanner/Classes/Utilities.swift; sourceTree = "<group>"; };
 		D1C636E2F59FBA9397D342B835795824 /* Pods-ARFaceScanner_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ARFaceScanner_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		D24352DA6AFBE6D34086A41FE55E618E /* Pods-ARFaceScanner_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ARFaceScanner_Tests-dummy.m"; sourceTree = "<group>"; };
-		DBC9C2325705AD4C3E483B3033D863A9 /* Pods_ARFaceScanner_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ARFaceScanner_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6B3F727C1A080B17D22286BBE1578D9 /* AR2DFaceAnchor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AR2DFaceAnchor.swift; sourceTree = "<group>"; };
+		DBC9C2325705AD4C3E483B3033D863A9 /* Pods_ARFaceScanner_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_ARFaceScanner_Example.framework; path = "Pods-ARFaceScanner_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD8AD15DCBD8712BD91451CB12F7C58D /* Pods-ARFaceScanner_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ARFaceScanner_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		DE8B5D71C1EDCD6069CB2238E1C2436E /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DFCB8C44DE758E906C0BCDA455937B85 /* Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Alamofire.swift; path = Source/Alamofire.swift; sourceTree = "<group>"; };
 		E2F9510473F6FFD7AA66524DB16C2263 /* ResponseSerialization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ResponseSerialization.swift; path = Source/ResponseSerialization.swift; sourceTree = "<group>"; };
+		E3AFDECD44C8C31FA0816ADC436F2784 /* ARFaceScanner.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = ARFaceScanner.xcconfig; sourceTree = "<group>"; };
 		E5A8AA5F9EDED0A0BDDE7E830BF4AEE0 /* NetworkReachabilityManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkReachabilityManager.swift; path = Source/NetworkReachabilityManager.swift; sourceTree = "<group>"; };
 		E6F34CCF86067ED508C12C676E298C69 /* Alamofire.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Alamofire.xcconfig; sourceTree = "<group>"; };
 		EB16715678AD17E3FF397D0C63B0B3A9 /* Pods-ARFaceScanner_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ARFaceScanner_Tests-umbrella.h"; sourceTree = "<group>"; };
-		EEE39795657CD0DB16F30916557C619A /* ARFaceScanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ARFaceScanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EEE39795657CD0DB16F30916557C619A /* ARFaceScanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = ARFaceScanner.framework; path = ARFaceScanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F2DA985F48B122052DC8928029CA04B0 /* Pods-ARFaceScanner_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ARFaceScanner_Example.release.xcconfig"; sourceTree = "<group>"; };
-		FC0C56D371B9582B9DF6B6932763DD87 /* AR2DFaceManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AR2DFaceManager.swift; path = ARFaceScanner/Classes/AR2DFaceManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +196,7 @@
 				B029DBC43E49A740F12B5E4D2E6DD452 /* Validation.swift */,
 				55F14F994FE7AB51F028BFE66CEF3106 /* Support Files */,
 			);
+			name = Alamofire;
 			path = Alamofire;
 			sourceTree = "<group>";
 		};
@@ -203,20 +206,6 @@
 				200D10EB20F0397D47F022B50CF0433F /* Alamofire */,
 			);
 			name = Pods;
-			sourceTree = "<group>";
-		};
-		396589C11F1CF9512F1AAE4ECE71D245 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				325B032E35CE110237D47D21E5DAC001 /* ARFaceScanner.modulemap */,
-				9F00EDEBB543CA8A674A55755B111EA5 /* ARFaceScanner.xcconfig */,
-				11ED16388887504C7273FBF0244FC1F8 /* ARFaceScanner-dummy.m */,
-				1DCC4277A07F5C8F8F7E289691EEEC41 /* ARFaceScanner-prefix.pch */,
-				A507B9C17F03346C90FD785E23653761 /* ARFaceScanner-umbrella.h */,
-				0995A343047ACCA5F90B7A024393F319 /* Info.plist */,
-			);
-			name = "Support Files";
-			path = "Example/Pods/Target Support Files/ARFaceScanner";
 			sourceTree = "<group>";
 		};
 		43B8DF9B1EEB5596D6DB38141874FFED /* iOS */ = {
@@ -273,16 +262,38 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		7C13B42D20EB568047DF9A2CC7542E01 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				3BDED6CCFC0E41E91B861055B9719A1D /* ARFaceScanner.modulemap */,
+				E3AFDECD44C8C31FA0816ADC436F2784 /* ARFaceScanner.xcconfig */,
+				A0A5CCC385E47ED426E5F2437BAB76FC /* ARFaceScanner-dummy.m */,
+				84F76BFF6C09E9A093448C5CFAF3C039 /* ARFaceScanner-prefix.pch */,
+				CD8ACBC662895688935FC842965DE9F5 /* ARFaceScanner-umbrella.h */,
+				21D6E1FDDAA099C671E28FE0B31281A6 /* Info.plist */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/ARFaceScanner";
+			sourceTree = "<group>";
+		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
-				BD435E8539FCAD9CB7693488695E7088 /* Development Pods */,
+				977984568A547D74E876B2EFD1AFA83F /* Development Pods */,
 				14B8B9B15ECBE87983FF987239AB2D7B /* Frameworks */,
 				35F128EB69B6F7FB7DA93BBF6C130FAE /* Pods */,
 				773623431C49BFB82387B3903F3B3299 /* Products */,
 				97A5826AC46ABE89CDFC3AFC741CAF5A /* Targets Support Files */,
 			);
+			sourceTree = "<group>";
+		};
+		977984568A547D74E876B2EFD1AFA83F /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AF02D73A6E6BBD1A8660E9BD9D742048 /* ARFaceScanner */,
+			);
+			name = "Development Pods";
 			sourceTree = "<group>";
 		};
 		97A5826AC46ABE89CDFC3AFC741CAF5A /* Targets Support Files */ = {
@@ -294,12 +305,26 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		BD435E8539FCAD9CB7693488695E7088 /* Development Pods */ = {
+		AF02D73A6E6BBD1A8660E9BD9D742048 /* ARFaceScanner */ = {
 			isa = PBXGroup;
 			children = (
-				FA3C96A4E01971DD7FBAE04C93202BED /* ARFaceScanner */,
+				139799F8961CE0437A9DCD13A84AE29E /* AR2DFaceManager.swift */,
+				729B081D694C77431F0B8B0E6A5B016B /* GLKit+Operation.swift */,
+				CDCBBEC895623DC280121CE3EF8656E4 /* Utilities.swift */,
+				C40CE0D5897D9163A8C779B49FF192C6 /* Models */,
+				7C13B42D20EB568047DF9A2CC7542E01 /* Support Files */,
 			);
-			name = "Development Pods";
+			name = ARFaceScanner;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		C40CE0D5897D9163A8C779B49FF192C6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D6B3F727C1A080B17D22286BBE1578D9 /* AR2DFaceAnchor.swift */,
+			);
+			name = Models;
+			path = ARFaceScanner/Classes/Models;
 			sourceTree = "<group>";
 		};
 		C75B88F2D350278AF449FAD18C810CDB /* Pods-ARFaceScanner_Tests */ = {
@@ -318,27 +343,6 @@
 			);
 			name = "Pods-ARFaceScanner_Tests";
 			path = "Target Support Files/Pods-ARFaceScanner_Tests";
-			sourceTree = "<group>";
-		};
-		F813A036CA85B95A3C8729C5248764FC /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				C7D5B094E56C72CB9FEE54F6C5313F32 /* AR2DFaceAnchor.swift */,
-			);
-			name = Models;
-			path = ARFaceScanner/Classes/Models;
-			sourceTree = "<group>";
-		};
-		FA3C96A4E01971DD7FBAE04C93202BED /* ARFaceScanner */ = {
-			isa = PBXGroup;
-			children = (
-				FC0C56D371B9582B9DF6B6932763DD87 /* AR2DFaceManager.swift */,
-				48C6506AA23D86BF76688CF7886DF592 /* Utilities.swift */,
-				F813A036CA85B95A3C8729C5248764FC /* Models */,
-				396589C11F1CF9512F1AAE4ECE71D245 /* Support Files */,
-			);
-			name = ARFaceScanner;
-			path = ../..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -383,7 +387,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6DFFC454542ED524DC9BCA7F756DAD40 /* Build configuration list for PBXNativeTarget "ARFaceScanner" */;
 			buildPhases = (
-				A4812144ADC07BC892FD07A6B36A2BD2 /* Sources */,
+				42FA816B5508F549A793286F959436FB /* Sources */,
 				CBE9752EA6CA047118ABC171FEB26DAD /* Frameworks */,
 				E7396FF24A47E99505062F0FEEC21C67 /* Headers */,
 			);
@@ -512,22 +516,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		42FA816B5508F549A793286F959436FB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				798552AAD34317C2BA190B2EF777C62D /* AR2DFaceAnchor.swift in Sources */,
+				881E1BF3E25F911B4535969A4AFF8C4B /* AR2DFaceManager.swift in Sources */,
+				F6DF8E9A03A7681739863F2BD5B70DDD /* ARFaceScanner-dummy.m in Sources */,
+				B160BC5409F2A4B12F1DCA0146944A51 /* GLKit+Operation.swift in Sources */,
+				2CB0ABC1E14257B8F30D6A0CBADD9457 /* Utilities.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		87CF76C94CCC29FD3B7B1F459ACD893E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				D3CA3401E88B84A1AAF9CF82852A849F /* Pods-ARFaceScanner_Example-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A4812144ADC07BC892FD07A6B36A2BD2 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				1EEFA8FBC86028EE1E3410F3E1F8C3CF /* AR2DFaceAnchor.swift in Sources */,
-				68FDD5882287076F84F420AE8D2A1A06 /* AR2DFaceManager.swift in Sources */,
-				CFB388144B4890735097463865FAA32E /* ARFaceScanner-dummy.m in Sources */,
-				FF5F5BDEADABB4EFCB5A0FE5D6F7DDC9 /* Utilities.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -704,7 +709,7 @@
 		};
 		84C0B85062D215215D653F81E6A11950 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9F00EDEBB543CA8A674A55755B111EA5 /* ARFaceScanner.xcconfig */;
+			baseConfigurationReference = E3AFDECD44C8C31FA0816ADC436F2784 /* ARFaceScanner.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -859,7 +864,7 @@
 		};
 		BD5F899D017ED700B30EE385CCD387FE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9F00EDEBB543CA8A674A55755B111EA5 /* ARFaceScanner.xcconfig */;
+			baseConfigurationReference = E3AFDECD44C8C31FA0816ADC436F2784 /* ARFaceScanner.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";

@@ -57,7 +57,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate, AR
         sceneView.session.run(configuration)
         sceneView.session.delegate = self
         
-        faceManager.start(sceneView.session)
+        faceManager.start(sceneView.session, viewportSize: sceneView.frame.size)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -150,8 +150,28 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate, AR
     }
     
     // MARK: - AR2DFaceManagerDelegate
+    var _facesSpheres = [SCNNode]()
     func facesDidUpdate(_ manager: AR2DFaceManager, anchors: [AR2DFaceAnchor]) {
-        faceHUDView.faceBoxes = anchors.flatMap({ $0.faceObservation?.boundingBox })
+        faceHUDView.faceBoxes = anchors.flatMap({ $0.face2DBoundingBox })
+        _facesSpheres.forEach({$0.removeFromParentNode()})
+        faceHUDView.debugPoints = []
+        
+        anchors.forEach { (anchor) in
+            guard anchor.sampleCount > 9 else { return }
+            
+            //let rotation = SCNQuaternion(anchor.faceOrientation.vector.x, anchor.faceOrientation.vector.y, anchor.faceOrientation.vector.z, anchor.faceOrientation.vector.w)
+            let sphere = SCNBox(width: 0.01, height: 0.01, length: 0.05, chamferRadius: 0.2)
+            sphere.firstMaterial?.diffuse.contents = UIColor.green
+            let node = SCNNode(geometry: sphere)
+            node.simdPosition = anchor.facePosition
+          //  node.simdScale = anchor.faceScale
+            node.simdRotation = anchor.faceRotation.vector
+            
+            sceneView.scene.rootNode.addChildNode(node)
+            _facesSpheres.append(node)
+
+            faceHUDView.debugPoints.append(contentsOf: anchor.point2DClouds)
+        }
     }
     
     // MARK: - Action
@@ -159,7 +179,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate, AR
         let anchors = faceManager.faceAnchors
         
         anchors.forEach { (anchor) in
-            let pos = anchor.ARPosition
+            let pos = anchor.facePosition
             let worldCoord = SCNVector3Make(pos.x, pos.y, pos.z)
             let box = anchor.faceObservation!.boundingBox
             
@@ -168,7 +188,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate, AR
             let faceConstraint = SCNBillboardConstraint()
             faceConstraint.freeAxes = SCNBillboardAxis.Y
             let snapShot =  sceneView.snapshot()
-            let cgImage = snapShot.cgImage!.cropping(to: box.denomalize(to: CGRect(origin: CGPoint.zero, size: snapShot.size)))!
+            let cgImage = snapShot.cgImage!.cropping(to: box)!
             let image = UIImage(cgImage: cgImage)
             let facePlane = SCNPlane(width: 0.1, height: 0.1 / image.size.width * image.size.height)
             facePlane.firstMaterial?.diffuse.contents = image

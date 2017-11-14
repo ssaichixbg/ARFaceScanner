@@ -28,6 +28,12 @@ class FaceDectionHUDView: UIView {
         }
     }
     
+    var debugPoints: [CGPoint] = [] {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
+    
     var backgroundImage: CGImage? {
         didSet { setNeedsDisplay() }
     }
@@ -35,13 +41,17 @@ class FaceDectionHUDView: UIView {
     // Only override draw() if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
     override func draw(_ rect: CGRect) {
+        guard let context = UIGraphicsGetCurrentContext() else { return }
+        
         // Drawing code
         faceBoxes.forEach { (box) in
-            guard let context = UIGraphicsGetCurrentContext() else { return}
-            
             context.setStrokeColor(UIColor.yellow.cgColor)
-            context.stroke(box.denomalize(to: rect))
-            
+            context.stroke(box)
+        }
+        debugPoints.forEach { (point) in
+            let box = CGRect(origin: point, size: CGSize.zero).insetBy(dx: -4, dy: -4)
+            context.setStrokeColor(UIColor.blue.cgColor)
+            context.strokeEllipse(in: box)
         }
         //        if let backgroundImage = backgroundImage {
         //            UIGraphicsGetCurrentContext()?.draw(backgroundImage, in: rect)
