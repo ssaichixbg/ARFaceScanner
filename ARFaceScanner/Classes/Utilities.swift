@@ -11,6 +11,12 @@ import UIKit
 import ARKit
 
 public extension CGRect {
+    func denomalize(to rect: CGRect) -> CGRect {
+        let transform = CGAffineTransform(scaleX: -1, y: -1).translatedBy(x: -rect.width, y: -rect.height)
+        let translate = CGAffineTransform.identity.scaledBy(x: rect.width, y: rect.height)
+        return applying(translate).applying(transform)
+    }
+    
     var centerPoint: CGPoint {
         return CGPoint(x: midX, y: midY)
     }
@@ -64,16 +70,27 @@ public extension UIDeviceOrientation {
         default: return .leftMirrored
         }
     }
+    
+    var uiOrientation: UIInterfaceOrientation {
+        switch self {
+        case .landscapeLeft:
+            return .landscapeLeft
+        case .landscapeRight:
+            return .landscapeRight
+        default:
+            return .portrait
+        }
+    }
 }
 
 extension GLKVector3 {
-    var sim_vector: vector_float3 {
+    public var sim_vector: vector_float3 {
         return vector3(x, y, z)
     }
 }
 
 extension GLKQuaternion {
-    var sim_quaternion: simd_quatf {
+    public var sim_quaternion: simd_quatf {
         return simd_quaternion(vector4(x, y, z, w))
     }
 }
@@ -108,6 +125,12 @@ extension ARFrame {
     }
 }
 
+extension ARCamera {
+    var ray: GLKVector4 {
+        return transform.glk_matrix * GLKVector3.forward.pointVector4
+    }
+}
+
 func VectorConverter(
     point1: (projection: CGPoint, worldPosition: GLKVector3),
     point2: (projection: CGPoint, worldPosition: GLKVector3),
@@ -125,4 +148,102 @@ func VectorConverter(
         
         return a * worldBase1 + b * worldBase2 + point1.worldPosition
     }
+}
+
+extension Array where Element == float3 {
+    var fittedLine: GLKVector3? {
+        guard let first = first, let last = last, first != last else { return nil }
+        
+        return (first.glk_vector - last.glk_vector).normal
+    }
+}
+
+public func CreateMatchingBackingDataWithImage(imageRef: CGImage?, orienation: UIImageOrientation) -> CGImage? {
+    var orientedImage: CGImage?
+    
+    if let imageRef = imageRef {
+        let originalWidth = imageRef.width
+        let originalHeight = imageRef.height
+        let bitsPerComponent = imageRef.bitsPerComponent
+        let bytesPerRow = imageRef.bytesPerRow
+        
+        let colorSpace = imageRef.colorSpace
+        let bitmapInfo = imageRef.bitmapInfo
+        
+        var degreesToRotate: Double
+        var swapWidthHeight: Bool
+        var mirrored: Bool
+        switch orienation {
+        case .up:
+            degreesToRotate = 0.0
+            swapWidthHeight = false
+            mirrored = false
+            break
+        case .upMirrored:
+            degreesToRotate = 0.0
+            swapWidthHeight = false
+            mirrored = true
+            break
+        case .right:
+            degreesToRotate = 90.0
+            swapWidthHeight = true
+            mirrored = false
+            break
+        case .rightMirrored:
+            degreesToRotate = 90.0
+            swapWidthHeight = true
+            mirrored = true
+            break
+        case .down:
+            degreesToRotate = 180.0
+            swapWidthHeight = false
+            mirrored = false
+            break
+        case .downMirrored:
+            degreesToRotate = 180.0
+            swapWidthHeight = false
+            mirrored = true
+            break
+        case .left:
+            degreesToRotate = -90.0
+            swapWidthHeight = true
+            mirrored = false
+            break
+        case .leftMirrored:
+            degreesToRotate = -90.0
+            swapWidthHeight = true
+            mirrored = true
+            break
+        }
+        let radians = degreesToRotate * Double.pi / 180
+        
+        var width: Int
+        var height: Int
+        if swapWidthHeight {
+            width = originalHeight
+            height = originalWidth
+        } else {
+            width = originalWidth
+            height = originalHeight
+        }
+        
+        if let contextRef = CGContext(data: nil, width: width, height: height, bitsPerComponent: bitsPerComponent, bytesPerRow: bytesPerRow, space: colorSpace!, bitmapInfo: bitmapInfo.rawValue) {
+            
+            contextRef.translateBy(x: CGFloat(width) / 2.0, y: CGFloat(height) / 2.0)
+            if mirrored {
+                contextRef.scaleBy(x: -1.0, y: 1.0)
+            }
+            contextRef.rotate(by: CGFloat(radians))
+            if swapWidthHeight {
+                contextRef.translateBy(x: -CGFloat(height) / 2.0, y: -CGFloat(width) / 2.0)
+            } else {
+                contextRef.translateBy(x: -CGFloat(width) / 2.0, y: -CGFloat(height) / 2.0)
+            }
+            contextRef.draw(imageRef, in: CGRect(x: 0, y: 0, width: originalWidth, height: originalHeight))
+            
+            orientedImage = contextRef.makeImage()
+        }
+    }
+    
+    return orientedImage
 }

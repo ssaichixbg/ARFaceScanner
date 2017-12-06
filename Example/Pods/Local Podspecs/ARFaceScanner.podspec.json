@@ -1,8 +1,8 @@
 {
   "name": "ARFaceScanner",
   "version": "0.1.0",
-  "summary": "Detecting faces anchor using ARKit and Vision",
-  "description": "Detecting faces anchor using ARKit and Vision",
+  "summary": "Detecting faces in video frame of ARKit using Vision",
+  "description": "Detecting faces in video frame of ARKit using Vision.",
   "homepage": "https://github.com/zhangy405/ARFaceScanner",
   "license": {
     "type": "MIT",

@@ -15,6 +15,8 @@
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
+		F407E7021FBB95B000B39DD8 /* Scenes.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = F407E7011FBB95B000B39DD8 /* Scenes.scnassets */; };
+		F407E7061FBB98CF00B39DD8 /* head.dae in Resources */ = {isa = PBXBuildFile; fileRef = F407E7051FBB98CF00B39DD8 /* head.dae */; };
 		F44BD5E81FB26E75002E2DC8 /* FaceDectionHUDView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44BD5E71FB26E75002E2DC8 /* FaceDectionHUDView.swift */; };
 		F44BD5F01FB27055002E2DC8 /* FPPProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44BD5EF1FB27055002E2DC8 /* FPPProvider.swift */; };
 		F44BD5F21FB27072002E2DC8 /* FaceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44BD5F11FB27072002E2DC8 /* FaceProvider.swift */; };
@@ -49,6 +51,8 @@
 		C08281E24ACC37457824A2B6 /* Pods_ARFaceScanner_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ARFaceScanner_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C13B4DA2B120114A61598BF5 /* Pods-ARFaceScanner_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARFaceScanner_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ARFaceScanner_Tests/Pods-ARFaceScanner_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		C2D2B9BB0100B05F01C18E24 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		F407E7011FBB95B000B39DD8 /* Scenes.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = Scenes.scnassets; sourceTree = "<group>"; };
+		F407E7051FBB98CF00B39DD8 /* head.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = head.dae; sourceTree = "<group>"; };
 		F44BD5E71FB26E75002E2DC8 /* FaceDectionHUDView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceDectionHUDView.swift; sourceTree = "<group>"; };
 		F44BD5EF1FB27055002E2DC8 /* FPPProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FPPProvider.swift; path = FaceIndentifyProvider/FPPProvider.swift; sourceTree = "<group>"; };
 		F44BD5F11FB27072002E2DC8 /* FaceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FaceProvider.swift; path = FaceIndentifyProvider/FaceProvider.swift; sourceTree = "<group>"; };
@@ -127,6 +131,8 @@
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
 				F44BD5E71FB26E75002E2DC8 /* FaceDectionHUDView.swift */,
+				F407E7011FBB95B000B39DD8 /* Scenes.scnassets */,
+				F407E7051FBB98CF00B39DD8 /* head.dae */,
 			);
 			name = "Example for ARFaceScanner";
 			path = ARFaceScanner;
@@ -267,6 +273,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F407E7061FBB98CF00B39DD8 /* head.dae in Resources */,
+				F407E7021FBB95B000B39DD8 /* Scenes.scnassets in Resources */,
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
@@ -355,11 +363,13 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-ARFaceScanner_Example/Pods-ARFaceScanner_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ARFaceScanner/ARFaceScanner.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/PureLayout/PureLayout.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ARFaceScanner.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PureLayout.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

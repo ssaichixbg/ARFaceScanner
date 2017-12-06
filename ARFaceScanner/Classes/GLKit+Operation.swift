@@ -11,55 +11,87 @@ import GLKit
 infix operator •
 infix operator ±
 
-prefix func -(of: GLKVector3) -> GLKVector3 {
+public prefix func -(of: GLKVector3) -> GLKVector3 {
     return GLKVector3MultiplyScalar(of, -1)
 }
 
-func +(left: GLKVector3, right: GLKVector3) -> GLKVector3 {
+public func +(left: GLKVector3, right: GLKVector3) -> GLKVector3 {
     return GLKVector3Add(left, right)
 }
 
-func -(left: GLKVector3, right: GLKVector3) -> GLKVector3 {
+public func -(left: GLKVector3, right: GLKVector3) -> GLKVector3 {
     return GLKVector3Subtract(left, right)
 }
-func *(left: GLKVector3, right: GLKVector3) -> GLKVector3 {
+public func *(left: GLKVector3, right: GLKVector3) -> GLKVector3 {
     return GLKVector3CrossProduct(left, right)
 }
-func *(left: GLKVector3, right: GLfloat) -> GLKVector3 {
+public func *(left: GLKVector3, right: GLfloat) -> GLKVector3 {
     return GLKVector3MultiplyScalar(left, right)
 }
-func *(left: GLfloat, right: GLKVector3) -> GLKVector3 {
+public func *(left: GLfloat, right: GLKVector3) -> GLKVector3 {
     return GLKVector3MultiplyScalar(right, left)
 }
 
-func •(left: GLKVector3, right: GLKVector3) -> GLfloat {
+public func •(left: GLKVector3, right: GLKVector3) -> GLfloat {
     return GLKVector3DotProduct(left, right)
 }
 
-func ±(left: GLfloat, right: GLfloat) -> (GLfloat, GLfloat) {
+public func ±(left: GLfloat, right: GLfloat) -> (GLfloat, GLfloat) {
     return (left + right, left - right)
 }
 
-func *(left: GLKMatrix4, right: GLKVector3) -> GLKVector3 {
+public func *(left: GLKMatrix4, right: GLKVector3) -> GLKVector3 {
     return GLKMatrix4MultiplyVector3(left, right)
 }
 
-func *(left: GLKMatrix4, right: GLKVector4) -> GLKVector4 {
+public func *(left: GLKMatrix4, right: GLKVector4) -> GLKVector4 {
     return GLKMatrix4MultiplyVector4(left, right)
 }
 
-func *(left: GLKMatrix4, right: GLKMatrix4) -> GLKMatrix4 {
+public func *(left: GLKMatrix4, right: GLKMatrix4) -> GLKMatrix4 {
     return GLKMatrix4Multiply(left, right)
 }
 
+public extension matrix_float4x4 {
+    var glk_matrix: GLKMatrix4 {
+        return GLKMatrix4MakeWithColumns(columns.0.glk_vector, columns.1.glk_vector, columns.2.glk_vector, columns.3.glk_vector)
+    }
+}
 
-extension GLKVector3 {
-    var length : GLfloat {
+public extension float3 {
+    var glk_vector: GLKVector3 {
+        return GLKVector3Make(x, y, z)
+    }
+}
+
+public extension float4 {
+    var glk_vector: GLKVector4 {
+        return GLKVector4Make(x, y, z, w)
+    }
+}
+
+public extension GLKVector3 {
+    var length: GLfloat {
         return GLKVector3Length(self)
     }
-    static var eX : GLKVector3 { return GLKVector3Make(1, 0, 0) }
-    static var eY : GLKVector3 { return GLKVector3Make(0, 1, 0) }
-    static var eZ : GLKVector3 { return GLKVector3Make(0, 0, 1) }
+    
+    var normal: GLKVector3 {
+        return GLKVector3Normalize(self)
+    }
+    
+    var pointVector4: GLKVector4 {
+        return GLKVector4MakeWithVector3(self, 0)
+    }
+    
+    static var right : GLKVector3 { return GLKVector3Make(1, 0, 0) }
+    static var up : GLKVector3 { return GLKVector3Make(0, 1, 0) }
+    static var forward : GLKVector3 { return GLKVector3Make(0, 0, 1) }
+}
+
+public extension GLKVector4 {
+    var vector3: GLKVector3 {
+        return GLKVector3Make(x, y, z)
+    }
 }
 
 extension GLKVector3 : CustomStringConvertible {
@@ -68,7 +100,7 @@ extension GLKVector3 : CustomStringConvertible {
     }
 }
 
-extension GLKVector2 {
+public extension GLKVector2 {
     var length : GLfloat {
         return GLKVector2Length(self)
     }

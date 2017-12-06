@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'ARFaceScanner'
   s.version          = '0.1.0'
-  s.summary          = 'Detecting faces anchor using ARKit and Vision'
+  s.summary          = 'Detecting faces in video frame of ARKit using Vision'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,8 +18,8 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-Detecting faces anchor using ARKit and Vision
-                       DESC
+Detecting faces in video frame of ARKit using Vision.                       
+DESC
 
   s.homepage         = 'https://github.com/zhangy405/ARFaceScanner'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'

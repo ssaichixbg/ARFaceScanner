@@ -11,24 +11,120 @@ import SceneKit
 import ARKit
 import Vision
 import ARFaceScanner
+import VideoToolbox
+import PureLayout
 
-class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate, AR2DFaceManagerDelegate {
+class HeadNode: SCNNode {
+    var leftEye: SCNNode
+    var rightEye: SCNNode
+    var lip: SCNNode
+    
+    override init() {
+//        let headNode = SCNScene(named: "head.dae")!.rootNode.childNode(withName: "head", recursively: true)!
+//        let node = SCNNode()
+//        node.addChildNode(headNode)
+//        node.position = SCNVector3(x: 0, y: 0, z: 0)
+//        headNode.position = SCNVector3(x: 0, y: 0, z: 0)
+//        headNode.scale = SCNVector3(0.8, 0.8, 0.8)
+//        headNode.eulerAngles = SCNVector3(0, Float.pi * 0.5, Float.pi )
+        leftEye = SCNNode()
+        leftEye.geometry = SCNSphere(radius: 0.02)
+        leftEye.geometry?.firstMaterial?.diffuse.contents = UIColor.white
+        var eyeBall = SCNNode()
+        eyeBall.geometry = SCNSphere(radius: 0.01)
+        //leftEye.addChildNode(eyeBall)
+        eyeBall.position = SCNVector3(-0.02, 0, 0)
+        eyeBall.geometry?.firstMaterial?.diffuse.contents = UIColor.black
+        
+        rightEye = SCNNode()
+        rightEye.geometry = SCNSphere(radius: 0.02)
+        rightEye.geometry?.firstMaterial?.diffuse.contents = UIColor.white
+        eyeBall = SCNNode()
+        eyeBall.geometry = SCNSphere(radius: 0.01)
+        //rightEye.addChildNode(eyeBall)
+        eyeBall.position = SCNVector3(-0.02, 0, 0)
+        eyeBall.geometry?.firstMaterial?.diffuse.contents = UIColor.black
+        
+        lip = SCNNode()
+        lip.geometry = SCNSphere(radius: 0.02)
+        lip.geometry?.firstMaterial?.diffuse.contents = UIColor.red
+        
+        super.init()
+        
+        let upDirection = SCNNode()
+        upDirection.geometry = SCNCylinder(radius: 0.005, height: 0.3)
+        upDirection.geometry?.firstMaterial?.diffuse.contents = UIColor.green
+        upDirection.pivot = SCNMatrix4MakeTranslation(0, -0.15, 0)
+        
+        let rightDirection = SCNNode()
+        rightDirection.geometry = SCNCylinder(radius: 0.005, height: 0.3)
+        rightDirection.geometry?.firstMaterial?.diffuse.contents = UIColor.red
+        rightDirection.pivot = SCNMatrix4MakeTranslation(0, -0.15, 0)
+        rightDirection.eulerAngles = SCNVector3Make(0, 0, .pi * 0.5)
+        
+        let forwardDirection = SCNNode()
+        forwardDirection.geometry = SCNCylinder(radius: 0.005, height: 0.3)
+        forwardDirection.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
+        forwardDirection.pivot = SCNMatrix4MakeTranslation(0, -0.15, 0)
+        forwardDirection.eulerAngles = SCNVector3Make(.pi * 0.5, 0, 0)
+        
+        addChildNode(upDirection)
+        addChildNode(rightDirection)
+        addChildNode(forwardDirection)
+        
+        addChildNode(leftEye)
+        addChildNode(rightEye)
+        addChildNode(lip)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+class FacePool {
+    var pool = [HeadNode]()
+    var used = [HeadNode]()
+    func request() -> HeadNode {
+        if pool.count == 0 {
+            pool.append(HeadNode())
+        }
+        used.append(pool.last!)
+        return pool.popLast()!
+    }
+    
+    func release(node: HeadNode) {
+        node.removeFromParentNode()
+        pool.append(node)
+        if let index = used.index(of: node) {
+             used.remove(at: index)
+        }
+    }
+    
+    func releaseAll() {
+        used.forEach({ release(node: $0 )})
+    }
+}
+
+class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate, ARFSFaceManagerDelegate {
     // UI
     @IBOutlet var sceneView: ARSCNView!
     var faceHUDView = FaceDectionHUDView(frame: CGRect.zero)
-    
+    var lockSwitch: UISwitch!
     // AR2DFaceManager
-    var faceManager = AR2DFaceManager()
-    
+    var faceManager = ARFSFaceManager()
+    var locked = false
     // SceneKit
     let bubbleDepth : Float = 0.01
+    var faceTextNodes = [Int: SCNNode]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         sceneView.delegate = self
         sceneView.showsStatistics = true
-        sceneView.automaticallyUpdatesLighting = true
+        sceneView.automaticallyUpdatesLighting = false
+        sceneView.autoenablesDefaultLighting = true
         sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints, ARSCNDebugOptions.showWorldOrigin]
         let scene = SCNScene()
         sceneView.scene = scene
@@ -39,12 +135,22 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate, AR
         faceHUDView.addGestureRecognizer(tapGesture)
         
         faceManager.delegate = self
+        
+        setupUI()
+    }
+    
+    func setupUI() {
+        lockSwitch = UISwitch(frame: CGRect.zero)
+        lockSwitch.setOn(false, animated: false)
+        view.insertSubview(lockSwitch, aboveSubview: faceHUDView)
+        lockSwitch.addTarget(self, action: #selector(lockDidChanged(_:)), for: .valueChanged)
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
         faceHUDView.frame = sceneView.frame
+        lockSwitch.frame.origin.y = sceneView.frame.height - 51.0;
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -150,28 +256,102 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate, AR
     }
     
     // MARK: - AR2DFaceManagerDelegate
-    var _facesSpheres = [SCNNode]()
-    func facesDidUpdate(_ manager: AR2DFaceManager, anchors: [AR2DFaceAnchor]) {
+    var _facePool = FacePool()
+    func facesDidUpdate(_ manager: ARFSFaceManager, anchors: [ARFSFaceAnchor]) {
+        guard !locked else { return }
         faceHUDView.faceBoxes = anchors.flatMap({ $0.face2DBoundingBox })
-        _facesSpheres.forEach({$0.removeFromParentNode()})
+       // _facesSpheres.forEach({$0.removeFromParentNode()})
         faceHUDView.debugPoints = []
+    
+        _facePool.releaseAll()
         
         anchors.forEach { (anchor) in
-            guard anchor.sampleCount > 9 else { return }
+             guard anchor.sampleCount > 0 else { return }
+            
+            if let textNode = faceTextNodes[anchor.faceID]{
+                var facePos = anchor.facePosition.glk_vector
+                
+                facePos = facePos - (sceneView.session.currentFrame!.camera.transform.glk_matrix * GLKVector3.right.pointVector4).vector3.normal * 0.2
+                textNode.simdPosition = facePos.sim_vector
+            }
+            else {
+                // new face
+                addFaceText(anchor: anchor)
+            }
             
             //let rotation = SCNQuaternion(anchor.faceOrientation.vector.x, anchor.faceOrientation.vector.y, anchor.faceOrientation.vector.z, anchor.faceOrientation.vector.w)
-            let sphere = SCNBox(width: 0.01, height: 0.01, length: 0.05, chamferRadius: 0.2)
-            sphere.firstMaterial?.diffuse.contents = UIColor.green
-            let node = SCNNode(geometry: sphere)
+            let node = self._facePool.request()
+            //sphere.firstMaterial?.diffuse.contents = UIColor.green
+            //let node = SCNNode(geometry: sphere)
             node.simdPosition = anchor.facePosition
-          //  node.simdScale = anchor.faceScale
-            node.simdRotation = anchor.faceRotation.vector
-            
+            //node.simdScale = anchor.faceScale
+            //print(anchor.faceScale)
+            node.simdLook(at: anchor.faceLookAt, up: vector3(0, 1, 0), localFront: (anchor.faceLookAt.glk_vector * vector3(0, 1, 0) .glk_vector).sim_vector )
+            //node.simdLook(at: anchor.faceLookAt)
+            node.leftEye.simdWorldPosition = anchor.landmarks?.leftEye.first ?? vector3(0, 0, 0)
+            node.rightEye.simdWorldPosition = anchor.landmarks?.rightEye.first ?? vector3(0, 0, 0)
+            node.lip.simdWorldPosition = anchor.landmarks?.innerLips.first ?? vector3(0, 0, 0)
             sceneView.scene.rootNode.addChildNode(node)
-            _facesSpheres.append(node)
 
             faceHUDView.debugPoints.append(contentsOf: anchor.point2DClouds)
         }
+        
+        Set(faceTextNodes.keys).subtracting(anchors.map({ $0.faceID })).forEach({
+            faceTextNodes[$0]?.removeFromParentNode()
+            faceTextNodes.removeValue(forKey: $0)
+        })
+    }
+    
+    func addFaceText(anchor: ARFSFaceAnchor) {
+        let pos = anchor.facePosition
+        let worldCoord = SCNVector3Make(pos.x, pos.y, pos.z)
+        let box = anchor.faceObservation!.boundingBox
+        let node: SCNNode = SCNNode()
+        // Create image
+        var cgImage: CGImage?
+        VTCreateCGImageFromCVPixelBuffer(sceneView.session.currentFrame!.capturedImage, nil, &cgImage)
+        cgImage = CreateMatchingBackingDataWithImage(imageRef: cgImage, orienation: .left)
+        cgImage = cgImage?.cropping(to: box.denomalize(to: CGRect(origin: CGPoint.zero, size: CGSize(width: cgImage!.width, height: cgImage!.height))))
+        let image = UIImage(cgImage: cgImage!)
+        let facePlane = SCNPlane(width: 0.1, height: 0.1 / image.size.width * image.size.height)
+        facePlane.firstMaterial?.diffuse.contents = image
+        facePlane.firstMaterial?.lightingModel = .constant
+        let faceNode = SCNNode(geometry: facePlane)
+        node.addChildNode(faceNode)
+        faceNode.position = SCNVector3Make(0, 0.1, 0)
+        
+        // Create 3D Text
+        let textNode : SCNNode = createNewBubbleParentNode("Analyzing...")
+        textNode.position = SCNVector3Make(0.1, 0, 0)
+        node.addChildNode(textNode)
+        
+        // TEXT BILLBOARD CONSTRAINT
+        let faceConstraint = SCNBillboardConstraint()
+        faceConstraint.freeAxes = SCNBillboardAxis.Y
+        var facePos = worldCoord
+        //facePos.x += 0.2
+        node.position = facePos
+        node.constraints = [faceConstraint]
+        sceneView.scene.rootNode.addChildNode(node)
+        
+        faceTextNodes[anchor.faceID] = node
+        FPPProvider().processFace(image: image, handler: { (text) in
+            DispatchQueue.main.async {
+                textNode.removeFromParentNode()
+                if let text = text {
+                    text.components(separatedBy: "\n").enumerated().forEach({ (i, line) in
+                        let textNode : SCNNode = self.createNewBubbleParentNode(line)
+                        node.addChildNode(textNode)
+                        textNode.position = SCNVector3Make(0.1, -(Float(i) * 0.03), 0)
+                    })
+                }
+                else {
+                    let textNode : SCNNode = self.createNewBubbleParentNode(text ?? "Face")
+                    node.addChildNode(textNode)
+                    textNode.position = SCNVector3Make(0.1, 0, 0)
+                }
+            }
+        })
     }
     
     // MARK: - Action
@@ -179,53 +359,13 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate, AR
         let anchors = faceManager.faceAnchors
         
         anchors.forEach { (anchor) in
-            let pos = anchor.facePosition
-            let worldCoord = SCNVector3Make(pos.x, pos.y, pos.z)
-            let box = anchor.faceObservation!.boundingBox
             
-            // Create image
-            // TEXT BILLBOARD CONSTRAINT
-            let faceConstraint = SCNBillboardConstraint()
-            faceConstraint.freeAxes = SCNBillboardAxis.Y
-            let snapShot =  sceneView.snapshot()
-            let cgImage = snapShot.cgImage!.cropping(to: box)!
-            let image = UIImage(cgImage: cgImage)
-            let facePlane = SCNPlane(width: 0.1, height: 0.1 / image.size.width * image.size.height)
-            facePlane.firstMaterial?.diffuse.contents = image
-            facePlane.firstMaterial?.lightingModel = .constant
-            let faceNode = SCNNode(geometry: facePlane)
-            var facePos = worldCoord
-            facePos.y += 0.1
-            faceNode.position = facePos
-            faceNode.constraints = [faceConstraint]
-            sceneView.scene.rootNode.addChildNode(faceNode)
-            
-            // Create 3D Text
-            let node : SCNNode = createNewBubbleParentNode("Analyzing...")
-            sceneView.scene.rootNode.addChildNode(node)
-            node.position = worldCoord
-            
-            FPPProvider().processFace(image: image, handler: { (text) in
-                DispatchQueue.main.async {
-                    node.removeFromParentNode()
-                    if let text = text {
-                        text.components(separatedBy: "\n").enumerated().forEach({ (i, line) in
-                            let node : SCNNode = self.createNewBubbleParentNode(line)
-                            self.sceneView.scene.rootNode.addChildNode(node)
-                            var pos = worldCoord
-                            pos.y -= (Float(i) * 0.03)
-                            node.position = pos
-                        })
-                    }
-                    else {
-                        let node : SCNNode = self.createNewBubbleParentNode(text ?? "Face")
-                        self.sceneView.scene.rootNode.addChildNode(node)
-                        node.position = worldCoord
-                    }
-                }
-            })
 
         }
+    }
+    
+    @objc func lockDidChanged(_ sender: UISwitch) {
+        locked = sender.isOn
     }
 }
 
